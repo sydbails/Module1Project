@@ -1,5 +1,4 @@
-require_relative 'joke'
-require_relative 'favorite'
-
 class User
+    has_many :favorites
+    has_many :jokes, through :favorites
 end

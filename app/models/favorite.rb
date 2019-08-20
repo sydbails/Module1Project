@@ -1,5 +1,4 @@
-require_relative 'joke'
-require_relative 'user'
-
 class Favorite
+    belongs_to :users
+    belongs_to :jokes
 end
