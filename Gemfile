@@ -7,3 +7,4 @@ gem "rake", "12.3.2"
 
 gem "pry"
 gem "require_all"
+gem "rest-client"

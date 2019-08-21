@@ -2,7 +2,7 @@
 def exit_now
     exit
 end
-require 'pry'
+
 def get_personalized_joke_by_name_from_api(name)
     # Retrieve a random personalized chuck joke using specified name
     # https://api.chucknorris.io/jokes/random?name=Bob
@@ -11,8 +11,12 @@ def get_personalized_joke_by_name_from_api(name)
 
     joke_data = RestClient.get(url_with_name) 
     joke_hash = JSON.parse(joke_data)
+    personalized_joke = joke_hash["value"]
+    
+    Joke.create(content: personalized_joke)
+    
     puts ""
-    puts joke_hash["value"]
+    puts personalized_joke
 end
 
 def get_random_joke_by_category_from_api(category)
@@ -28,18 +32,38 @@ def get_random_joke_by_category_from_api(category)
     
     joke_data = RestClient.get(url_with_category) 
     joke_hash = JSON.parse(joke_data)
+    random_joke = joke_hash["value"]
+    
+    Joke.create(content: random_joke)
+
     puts ""
-    puts joke_hash["value"]
+    puts random_joke
+    
 end
-binding.pry
+
+
+def get_random_joke
+    puts "Please type in a selection from one of the following categories: 
+    animal, career, celebrity, dev, explicit, fashion, food, history, money, 
+    movie, music, political, religion, science, sport, or travel."
+    puts ""
+    user_input = gets.chomp
+    if user_input == 'exit'
+        exit_now
+    else 
+        get_random_joke_by_category_from_api(user_input)
+    end
+end
 
 def random_joke_or_personalized_joke
     puts "Would you like a Chuck Norris joke? Press 1. For a personalized joke, press 2."
     user_input = gets.chomp
-    if user_input == 1
-        get_random_joke_by_category_from_api
-    elsif user_input == 2
-        get personalized_joke_from_api
+    if user_input == "1"
+        get_random_joke
+
+    elsif user_input == "2"
+       #binding.pry 
+        get_personalized_joke_from_api(current_first_name)
     else 
         puts "Invalid entry, please try again!" 
     end
@@ -57,14 +81,13 @@ def main_menu
     puts ""
     user_input = gets.chomp
     
-    if user_input == 1
+    if user_input == "1"
         random_joke_or_personalized_joke
-        # build out function that is a menu for which kind of joke the user will want
-    elsif user_input == 2
-        view_my_jokes
-    elsif user_input == 3
-        # need to write method that asks the user to input their friends username which will query and return a list
-    elsif user_input == 4
+    elsif user_input == "2"
+        view_my_jokes # needs to be built
+    elsif user_input == "3"
+        view_my_friends_jokes
+    elsif user_input == "4"
         exit
     else 
         puts "That was not a valid entry -- Chuck Norris wouldn't be proud. Please try again!"
@@ -72,7 +95,7 @@ def main_menu
 end
 
 # def favorite_this_joke
-    
+    # takes argument of random_joke OR personalized_joke 
 # end
 
 def whats_next_after_joke_is_told
@@ -95,6 +118,17 @@ def whats_next_after_joke_is_told
     end
 end
 
+# def view_my_friends_jokes
+# puts "Please enter your friends' username"
+# friends_username = gets.chomp
+# if friends_username = User.find_by(username: friends_username)
+#     return jokes that belong to that user
+# elseif friends_username == exit 
+# exit
+# else puts "Sorry, that username may not exist. Check your spelling and try again!"
+#     puts "" 
+#     puts ""
+#     puts "If you spell Chuck Norris wrong on Google it doesn't say, 'Did you mean Chuck Norris?' It simply replies, 'Run while you still have the chance.'"
 
     
 
