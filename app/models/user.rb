@@ -1,4 +1,7 @@
     class User < ActiveRecord::Base
+
+        ActiveRecord::Base.logger = nil
+       
         has_many :favorites
         has_many :jokes, through: :favorites
     

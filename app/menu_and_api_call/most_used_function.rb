@@ -66,7 +66,6 @@ def random_joke_or_personalized_joke(user)
         get_random_joke(user)
 
     elsif user_input == "2"
-       #binding.pry 
         get_personalized_joke_from_api(user)
     else 
         puts "Invalid entry, please try again!" 
@@ -90,8 +89,9 @@ def main_menu(user)
         random_joke_or_personalized_joke(user)
     elsif user_input == "2"
         Favorite.view_my_favorite_jokes(user)
+        puts "number 2 - what's next after joke is told WORKS"
     elsif user_input == "3"
-        view_my_friends_jokes
+        Favorite.find_my_friends_jokes(user)
     elsif user_input == "4"
         exit
     else 
@@ -100,11 +100,6 @@ def main_menu(user)
         main_menu(user)
     end
 end
-
-# def favorite_this_joke
-    # takes argument of random_joke OR personalized_joke 
-    # user.username + joke Favorite.create(user.username)
-# end
 
 def whats_next_after_joke_is_told(user)
     puts "That was a kneeslapper! What's next for you? Press 1 for 'main menu' , 2 to 'favorite' or 3 for another joke. Type 'exit' to get out of here!"
