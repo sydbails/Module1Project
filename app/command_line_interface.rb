@@ -3,8 +3,6 @@ require_relative 'models/user'
 require_relative 'models/joke'
 require_relative 'models/favorite'
 
-$current_first_name = ""
-
 def welcome
     print "\e[2J\e[f"
     # insert Chuck Norris picture 
@@ -29,3 +27,5 @@ def welcome
         user = User.find_or_create_user_query(username_input, first_name_input)
         main_menu(user)
 end
+
+# TEST COMMENT
