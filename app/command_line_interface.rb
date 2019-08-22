@@ -28,4 +28,3 @@ def welcome
         main_menu(user)
 end
 
-# TEST COMMENT

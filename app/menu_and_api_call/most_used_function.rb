@@ -81,7 +81,8 @@ def main_menu(user)
     puts "(1) Find joke"
     puts "(2) View my favorited jokes"
     puts "(3) View my pal's favorited jokes"
-    puts "(4) Exit"
+    puts "(4) Settings"
+    puts "(5) Exit"
     puts ""
     user_input = gets.chomp
     
@@ -93,6 +94,8 @@ def main_menu(user)
     elsif user_input == "3"
         Favorite.find_my_friends_jokes(user)
     elsif user_input == "4"
+        settings(user)
+    elsif user_input == "5"
         exit
     else 
         puts "That was not a valid entry -- Chuck Norris wouldn't be proud. Please try again!"
@@ -121,6 +124,19 @@ def whats_next_after_joke_is_told(user)
         whats_next_after_joke_is_told(user)
     end
 end
+
+def settings(user)
+    puts "What would you like to do? Press 1 to change your username, or press 2 to return to the main menu."
+        user_input = gets.chomp
+    if user_input == "1"
+        User.change_your_username(user)
+    elsif user_input == "2"
+        main_menu(user)
+    else
+        puts "Invalid entry. Chuck is disgusted. Try again!"
+    end
+end
+
 
 # def view_my_friends_jokes
 # puts "Please enter your friends' user.username"
