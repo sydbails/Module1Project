@@ -56,7 +56,7 @@ def get_random_joke(user)
     puts ""
     user_input = gets.chomp
     if user_input == "flatiron school"
-        puts ""
+        puts "HAAAAYYYYYYY VANESSA"
     elsif user_input == "Shreveport"
         puts ""
         puts "Did you know Shreveport has a population of 6? We didn't either."
@@ -76,9 +76,18 @@ end
 
 def random_joke_or_personalized_joke(user)
     puts ""
-    puts "Would you like a Chuck Norris joke? Press 1. For a personalized joke, press 2."
+    puts "What kind of joke would you like?"
+    puts ""
+    puts "(1) Random joke"
+    puts "(2) Personalized joke"
+    puts "(3) Get the Chuck out of here!"
+    puts ""
     user_input = gets.chomp
-    if user_input == "1"
+    if user_input == "3"
+        exit
+    elsif user_input == "exit"
+        exit
+    elsif user_input == "1"
         get_random_joke(user)
 
     elsif user_input == "2"
@@ -93,11 +102,12 @@ end
 def main_menu(user)
     puts "Enter a number that coincides with the menu selection."
     puts ""
-    puts "(1) Get joke"
-    puts "(2) View your favorite jokes"
-    puts "(3) View your pal's favorite jokes"
-    puts "(4) Settings"
-    puts "(5) Exit"
+    puts "(1) Get a Joke"
+    puts "(2) View My Favorites"
+    puts "(3) View My Pal's Favorites"
+    puts "(4) View My Enemy's Favorites"
+    puts "(5) Settings"
+    puts "(6) Get the Chuck Out of Here!"
     puts ""
     user_input = gets.chomp
     
@@ -108,8 +118,12 @@ def main_menu(user)
     elsif user_input == "3"
         Favorite.find_my_friends_jokes(user)
     elsif user_input == "4"
-        settings(user)
+        Favorite.find_my_enemies_jokes(user)
     elsif user_input == "5"
+        settings(user)
+    elsif user_input == "6"
+        exit
+    elsif user_input == "exit"
         exit
     else 
         puts "That was not a valid entry -- Chuck Norris wouldn't be proud. Please try again!"
@@ -120,11 +134,17 @@ end
 
 def whats_next_after_joke_is_told(user)
     puts "That was a kneeslapper! What's next for you?"
-    puts "Press 1 for 'main menu' , 2 to 'favorite' or 3 for another joke. Type 'exit' to get out of here!"
     puts ""
+    puts "(1) Main Menu"
+    puts "(2) Add to My Favorites"
+    puts "(3) Get Another Joke"
+    puts "(4) Get the Chuck out of here!"
+    puts ""
+    # puts "Press 1 for 'main menu' , 2 to 'favorite' or 3 for another joke. Type 'exit' to get out of here!"
+    # puts ""
     user_input = gets.chomp
     
-    if user_input == 'exit'
+    if user_input == '4'
         exit
     elsif 
         user_input == "1"
@@ -143,9 +163,18 @@ end
 
 def settings(user)
     puts ""
-    puts "What would you like to do? Press 1 to change your username, or press 2 to return to the main menu."
+    puts "What would you like to do?"
+        puts "(1) Change your username"
+        puts "(2) Return to the main menu"
+        puts "(3) Get the Chuck out of here!"
+        puts ""
+        # Press 1 to change your username, or press 2 to return to the main menu."
         user_input = gets.chomp
-    if user_input == "1"
+    if user_input == "3"
+        exit
+    elsif user_input == "exit"
+        exit
+    elsif user_input == "1"
         User.change_your_username(user)
     elsif user_input == "2"
         main_menu(user)
