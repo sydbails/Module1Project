@@ -8,7 +8,7 @@ In comes Chuck You, a funny machine by Syd (@sydbails) and Hemesh (@hemeshvpatel
 
 ## Down to Business
 
-# MVP - Minimum Viable Product
+### MVP - Minimum Viable Product
 In order for our program to work, as well as to pass our Module 1 Project requirements, we needed a few of the following:
 
 - CRUD functionality for our user
@@ -20,17 +20,17 @@ Our long term goals were to include:
 - A favorites join table that was accessible
 - An appealing and aesthetic CLI
 
-# Functions of Chuck You program:
+### Functions of Chuck You program:
 - Create/change your username
 - Retrieve random Chuck Norris joke
 - Retrieve personalized Chuck Norris joke, with user’s name
 - Save joke to ‘favorites’ folder
 - View jokes others’ have saved to their favorites’ folder
 
-# API
+### API
 https://api.chucknorris.io/#!
 
-# Gems
+### Gems
 gem "sinatra-activerecord"
 gem 'activerecord', "~>5.2.3"
 gem 'sqlite3', '~>1.3.6'
@@ -40,7 +40,7 @@ gem "pry"
 gem "require_all"
 gem "rest-client"
 
-# Walkthrough:
+### Walkthrough:
 
 - Create a username including your first name
 
