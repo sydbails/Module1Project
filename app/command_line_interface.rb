@@ -68,7 +68,7 @@ def welcome
         else
             username_input = user_input
         end 
-        
+    puts ""
     puts "Enter your first name."
     user_input = gets.chomp
         if user_input == "exit"
@@ -77,6 +77,7 @@ def welcome
             first_name_input = user_input
         end
         user = User.find_or_create_user_query(username_input, first_name_input)
+        puts ""
         puts "Thanks #{first_name_input}!"
         puts ""
         main_menu(user)

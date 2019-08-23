@@ -49,6 +49,7 @@ end
 def get_random_joke(user)
     categories = ["animal", "career", "celebrity", "dev", "explicit", "fashion", "food", "history", "money", 
     "movie", "music", "political", "religion", "science", "sport", "travel"]
+    puts "" 
     puts "Please type in a selection from one of the following categories: 
     animal, career, celebrity, dev, explicit, fashion, food, history, money, 
     movie, music, political, religion, science, sport, or travel."
@@ -60,7 +61,7 @@ def get_random_joke(user)
         puts ""
         puts "Did you know Shreveport has a population of 6? We didn't either."
         puts ""
-        
+
     elsif user_input == 'exit'
             exit_now
     elsif categories.include? user_input
@@ -74,6 +75,7 @@ def get_random_joke(user)
 end
 
 def random_joke_or_personalized_joke(user)
+    puts ""
     puts "Would you like a Chuck Norris joke? Press 1. For a personalized joke, press 2."
     user_input = gets.chomp
     if user_input == "1"
@@ -89,11 +91,11 @@ end
 
 
 def main_menu(user)
-    puts "Please select number that coincides with menu option."
+    puts "Enter a number that coincides with the menu selection."
     puts ""
-    puts "(1) Find joke"
-    puts "(2) View my favorited jokes"
-    puts "(3) View my pal's favorited jokes"
+    puts "(1) Get joke"
+    puts "(2) View your favorite jokes"
+    puts "(3) View your pal's favorite jokes"
     puts "(4) Settings"
     puts "(5) Exit"
     puts ""
@@ -103,7 +105,6 @@ def main_menu(user)
         random_joke_or_personalized_joke(user)
     elsif user_input == "2"
         Favorite.view_my_favorite_jokes(user)
-        puts "number 2 - what's next after joke is told WORKS"
     elsif user_input == "3"
         Favorite.find_my_friends_jokes(user)
     elsif user_input == "4"
@@ -118,7 +119,9 @@ def main_menu(user)
 end
 
 def whats_next_after_joke_is_told(user)
-    puts "That was a kneeslapper! What's next for you? Press 1 for 'main menu' , 2 to 'favorite' or 3 for another joke. Type 'exit' to get out of here!"
+    puts "That was a kneeslapper! What's next for you?"
+    puts "Press 1 for 'main menu' , 2 to 'favorite' or 3 for another joke. Type 'exit' to get out of here!"
+    puts ""
     user_input = gets.chomp
     
     if user_input == 'exit'
@@ -139,6 +142,7 @@ def whats_next_after_joke_is_told(user)
 end
 
 def settings(user)
+    puts ""
     puts "What would you like to do? Press 1 to change your username, or press 2 to return to the main menu."
         user_input = gets.chomp
     if user_input == "1"
@@ -150,18 +154,4 @@ def settings(user)
     end
 end
 
-
-# def view_my_friends_jokes
-# puts "Please enter your friends' user.username"
-# friends_user.username = gets.chomp
-# if friends_user.username = User.find_by(user.username: friends_user.username)
-#     return jokes that belong to that user
-# elseif friends_user.username == exit 
-# exit
-# else puts "Sorry, that  may not exist. Check your spelling and try again!"
-#     puts "" 
-#     puts ""
-#     puts "If you spell Chuck Norris wrong on Google it doesn't say, 'Did you mean Chuck Norris?' It simply replies, 'Run while you still have the chance.'"
-
-    
 

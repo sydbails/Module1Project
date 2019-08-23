@@ -7,7 +7,8 @@ class Favorite < ActiveRecord::Base
 
     def self.favorite_a_joke(user)
         Favorite.create(username_id: user.id,  jokes_id: Joke.last.id)
-        puts "Glad you approved of Chuck, saving to my favs"
+        puts ""
+        puts "This joke has been saved to your favorites. Go forth and be funny."
         puts ""
         main_menu(user)
     end
@@ -41,7 +42,10 @@ class Favorite < ActiveRecord::Base
             puts ""
             main_menu(user)
         else
-            puts "Username not found"
+            puts "Sorry, the user '#{friends_username}' may not exist or they may not have any favorite jokes. Check your spelling and try again!"
+            puts "" 
+            puts "*BTW - If you spell Chuck Norris wrong on Google it doesn't say, 'Did you mean Chuck Norris?' It simply replies, 'Run while you still have the chance.'*"
+            puts ""
             main_menu(user)
         end
     end
