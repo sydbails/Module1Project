@@ -4,7 +4,7 @@ require_relative 'models/joke'
 require_relative 'models/favorite'
 
 
-    def banner
+    def title_banner
         "       
               ______   __                            __                                __      __                  
               /      \ /  |                          /  |                              /  \    /  |                 
@@ -19,7 +19,7 @@ require_relative 'models/favorite'
         "
         end
         
-        def banner2
+        def graphic_banner
         puts "
                                 `                                                                       `
                                 `                                                                       `
