@@ -10,7 +10,9 @@
         end
 
         def self.change_your_username(user)
+            puts ""
             puts "What would you like to change your username to?"
+            puts ""
             user_input = gets.chomp
 
             new_username_object = User.find_by(username: user_input)
