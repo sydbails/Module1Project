@@ -1,6 +1,6 @@
-# Module1Project
+# CHUCK ... YOU
 
-## Chuck You - A Chuck Norris Joke Generator the man himself would be proud of.
+## A Chuck Norris Joke Generator the man himself would be proud of.
 
 The year is 2006. You just finished wrapping up the season finale of the Hills, and decided to turn on your Zune player with your Skullcandy headphones in ear to listen to the hottest tunes and cruise the internet. You check your top 8 on Myspace, and see your friend left a “funny” public comment with a Chuck Norris joke. You can do way better than that.
 
