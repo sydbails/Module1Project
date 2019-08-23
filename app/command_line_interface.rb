@@ -3,13 +3,65 @@ require_relative 'models/user'
 require_relative 'models/joke'
 require_relative 'models/favorite'
 
+
+    def banner
+        "       
+              ______   __                            __                                __      __                  
+              /      \ /  |                          /  |                              /  \    /  |                 
+             /$$$$$$  |$$ |____   __    __   _______ $$ |   __                         $$  \  /$$/______   __    __ 
+             $$ |  $$/ $$      \ /  |  /  | /       |$$ |  /  |                         $$  \/$$//      \ /  |  /  |
+             $$ |      $$$$$$$  |$$ |  $$ |/$$$$$$$/ $$ |_/$$/                           $$  $$//$$$$$$  |$$ |  $$ |
+             $$ |   __ $$ |  $$ |$$ |  $$ |$$ |      $$   $$<                             $$$$/ $$ |  $$ |$$ |  $$ |
+             $$ \__/  | $$ |  $$ |$$ \__ $$ |$$ \_____   $$$$$$  \        __  __  __           $$ | $$ \ __$$ |$$ \__ $$ |
+             $$    $$/ $$ |  $$ |$$    $$/ $$       |$$ | $$  |      /  |/  |/  |          $$ | $$    $$/ $$    $$/ 
+              $$$$$$/  $$/   $$/  $$$$$$/   $$$$$$$/ $$/   $$/       $$/ $$/ $$/           $$/   $$$$$$/   $$$$$$/  
+        
+        "
+        end
+        
+        def banner2
+        puts "
+                                `                                                                       `
+                                `                                                                       `
+                                `                                                            
+                                `                    +soo+:: +         +oooo+                           `
+                                `                     +++++o+-:+so   oso++o+s+               
+                                `              oos+          o-.-+ho+yoossssyos              
+                                `              o  yh+        o : :+ oyysos +sho              
+                                `              s   ymso       ++o++::::soo :o+soso++                    `
+                                `              o+  sNNNms++       oo+  sso  +osoo:::++       
+                                `               +o+ hNNNmddhsso+     yyyyo  :ssso::::++                 `
+                                `                 oo++mNmdddddmddy++ysos+::::yssyo+::: o+               `
+                                `                  o  yNmdddddddddddyo+:::::+o:- os+  + o+              `
+                                `                   ++ohddhhdddddddddhds+ ooos:---.... :o+   
+                                `                            ooydddddddmmyos+syyyy   +++                `
+                                `                               +hdddddddmddyohys                       `
+                                `                                 sdddddddddmhhy                        `
+                                `                                   shddddddddddho                      `
+                                `                                      +osddddddddy+                    `
+                                `                                          yddddddddy                   `
+                                `                                            ohddddddy                  `
+                                `                                      ++ +osyhmmdddddh                 `
+                                `                                   +NNNddddddddddddddh                 `
+                                `                                   +mNddddddddddddys+       
+                                `                                   yNNddddhysoo+                       `
+                                `                                   dNNmso                              `
+                                `                                   yNNo                                `
+                                `                                    hy                                 `                                          `
+        "
+        end
+
 def welcome
     print "\e[2J\e[f"
-    # insert Chuck Norris picture 
-    puts "Hi, welcome to a joke generator that Chuck Norris himself would approve."
+
+    puts banner2
+    puts banner
+
     puts ""
-    puts "Please enter username or type 'exit' to exit."
-     # username = gets.chomp
+    puts "Welcome to Chuck You - a funny machine that exists purely to give you the best Chuck Norris jokes the world has to offer. Chuck himself is proud. "
+    puts ""
+    puts "Enter a username to get started, or type 'exit' to exit!"
+    puts ""
     user_input = gets.chomp
         if user_input == "exit"
             exit
@@ -17,7 +69,7 @@ def welcome
             username_input = user_input
         end 
         
-    puts "Please enter your first name."
+    puts "Enter your first name."
     user_input = gets.chomp
         if user_input == "exit"
             exit
@@ -25,6 +77,8 @@ def welcome
             first_name_input = user_input
         end
         user = User.find_or_create_user_query(username_input, first_name_input)
+        puts "Thanks #{first_name_input}!"
+        puts ""
         main_menu(user)
 end
 

@@ -47,15 +47,29 @@ end
 
 
 def get_random_joke(user)
+    categories = ["animal", "career", "celebrity", "dev", "explicit", "fashion", "food", "history", "money", 
+    "movie", "music", "political", "religion", "science", "sport", "travel"]
     puts "Please type in a selection from one of the following categories: 
     animal, career, celebrity, dev, explicit, fashion, food, history, money, 
     movie, music, political, religion, science, sport, or travel."
     puts ""
     user_input = gets.chomp
-    if user_input == 'exit'
-        exit_now
-    else 
+    if user_input == "flatiron school"
+        puts ""
+    elsif user_input == "Shreveport"
+        puts ""
+        puts "Did you know Shreveport has a population of 6? We didn't either."
+        puts ""
+        
+    elsif user_input == 'exit'
+            exit_now
+    elsif categories.include? user_input
         get_random_joke_by_category_from_api(user_input, user)
+    else 
+        puts ""
+        puts "Sorry, Chuck Norris has no clue what you've entered. Try again."
+        puts ""
+        get_random_joke(user)
     end
 end
 
@@ -75,7 +89,6 @@ end
 
 
 def main_menu(user)
-    #user_input = gets.chomp you want to collect this information after users sees selection
     puts "Please select number that coincides with menu option."
     puts ""
     puts "(1) Find joke"

@@ -18,11 +18,14 @@
             if new_username_object.blank?
                 user.username = user_input
                 user.save
+                puts ""
                 puts "Sahweet, that username is available! Your username is now '#{user.username}'!'"
                 puts ""
                 main_menu(user)
             else
+                puts""
                 puts "ChuckOH, that username is already taken. Please try again"
+                puts ""
                 change_your_username(user)
             end
         end
