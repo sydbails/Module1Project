@@ -3,11 +3,11 @@ def exit_now
     exit
 end
 
-def get_personalized_joke_by_name_from_api(name)
+def get_personalized_joke_from_api(user)
     # Retrieve a random personalized chuck joke using specified name
     # https://api.chucknorris.io/jokes/random?name=Bob
 
-    url_with_name = "https://api.chucknorris.io/jokes/random?name=#{name}"
+    url_with_name = "https://api.chucknorris.io/jokes/random?name=#{user.first_name}"
 
     joke_data = RestClient.get(url_with_name) 
     joke_hash = JSON.parse(joke_data)
@@ -17,9 +17,11 @@ def get_personalized_joke_by_name_from_api(name)
     
     puts ""
     puts personalized_joke
+    puts ""
+    whats_next_after_joke_is_told(user)
 end
 
-def get_random_joke_by_category_from_api(category)
+def get_random_joke_by_category_from_api(category, user)
     # Retrieve a random Chuck joke in JSON format url 
     # https://api.chucknorris.io/jokes/random
 
@@ -38,97 +40,147 @@ def get_random_joke_by_category_from_api(category)
 
     puts ""
     puts random_joke
-    
+    puts ""
+    whats_next_after_joke_is_told(user)
+     
 end
 
 
-def get_random_joke
+def get_random_joke(user)
+    categories = ["animal", "career", "celebrity", "dev", "explicit", "fashion", "food", "history", "money", 
+    "movie", "music", "political", "religion", "science", "sport", "travel"]
+    puts "" 
     puts "Please type in a selection from one of the following categories: 
     animal, career, celebrity, dev, explicit, fashion, food, history, money, 
     movie, music, political, religion, science, sport, or travel."
     puts ""
     user_input = gets.chomp
-    if user_input == 'exit'
-        exit_now
+    if user_input == "flatiron school"
+        puts "HAAAAYYYYYYY VANESSA"
+    elsif user_input == "Shreveport"
+        puts ""
+        puts "Did you know Shreveport has a population of 6? We didn't either."
+        puts ""
+
+    elsif user_input == 'exit'
+            exit_now
+    elsif categories.include? user_input
+        get_random_joke_by_category_from_api(user_input, user)
     else 
-        get_random_joke_by_category_from_api(user_input)
+        puts ""
+        puts "Sorry, Chuck Norris has no clue what you've entered. Try again."
+        puts ""
+        get_random_joke(user)
     end
 end
 
-def random_joke_or_personalized_joke
-    puts "Would you like a Chuck Norris joke? Press 1. For a personalized joke, press 2."
+def random_joke_or_personalized_joke(user)
+    puts ""
+    puts "What kind of joke would you like?"
+    puts ""
+    puts "(1) Random joke"
+    puts "(2) Personalized joke"
+    puts "(3) Get the Chuck out of here!"
+    puts ""
     user_input = gets.chomp
-    if user_input == "1"
-        get_random_joke
+    if user_input == "3"
+        exit
+    elsif user_input == "exit"
+        exit
+    elsif user_input == "1"
+        get_random_joke(user)
 
     elsif user_input == "2"
-       #binding.pry 
-        get_personalized_joke_from_api(current_first_name)
+        get_personalized_joke_from_api(user)
     else 
         puts "Invalid entry, please try again!" 
+        random_joke_or_personalized_joke(user)
     end
 end
 
 
-def main_menu
-    #user_input = gets.chomp you want to collect this information after users sees selection
-    puts "Please select number that coincides with menu option."
+def main_menu(user)
+    puts "Enter a number that coincides with the menu selection."
     puts ""
-    puts "(1) Find joke"
-    puts "(2) View my favorited jokes"
-    puts "(3) View my pal's favorited jokes"
-    puts "(4) Exit"
+    puts "(1) Get a Joke"
+    puts "(2) View My Favorites"
+    puts "(3) View My Pal's Favorites"
+    puts "(4) View My Enemy's Favorites"
+    puts "(5) Settings"
+    puts "(6) Get the Chuck Out of Here!"
     puts ""
     user_input = gets.chomp
     
     if user_input == "1"
-        random_joke_or_personalized_joke
+        random_joke_or_personalized_joke(user)
     elsif user_input == "2"
-        view_my_jokes # needs to be built
+        Favorite.view_my_favorite_jokes(user)
     elsif user_input == "3"
-        view_my_friends_jokes
+        Favorite.find_my_friends_jokes(user)
     elsif user_input == "4"
+        Favorite.find_my_enemies_jokes(user)
+    elsif user_input == "5"
+        settings(user)
+    elsif user_input == "6"
+        exit
+    elsif user_input == "exit"
         exit
     else 
         puts "That was not a valid entry -- Chuck Norris wouldn't be proud. Please try again!"
+        puts ""
+        main_menu(user)
     end
 end
 
-# def favorite_this_joke
-    # takes argument of random_joke OR personalized_joke 
-# end
-
-def whats_next_after_joke_is_told
-    puts "That was a kneeslapper! What's next for you? Press 1 for 'main menu' , 2 to 'favorite' or 3 for another joke. Type 'exit' to get out of here!"
+def whats_next_after_joke_is_told(user)
+    puts "That was a kneeslapper! What's next for you?"
+    puts ""
+    puts "(1) Main Menu"
+    puts "(2) Add to My Favorites"
+    puts "(3) Get Another Joke"
+    puts "(4) Get the Chuck out of here!"
+    puts ""
+    # puts "Press 1 for 'main menu' , 2 to 'favorite' or 3 for another joke. Type 'exit' to get out of here!"
+    # puts ""
     user_input = gets.chomp
     
-    if user_input == 'exit'
+    if user_input == '4'
         exit
     elsif 
-        user_input == 1
-        main_menu
+        user_input == "1"
+        main_menu(user)
     elsif 
-        user_input == 2
-        # favorite_this_joke
+        user_input == "2"
+        Favorite.favorite_a_joke(user)
     elsif 
-        user_input == 3
-        random_joke_or_personalized_joke
+        user_input == "3"
+        random_joke_or_personalized_joke(user)
     else 
         puts "That was not a valid entry -- Chuck Norris wouldn't be proud. Please try again!" 
+        whats_next_after_joke_is_told(user)
     end
 end
 
-# def view_my_friends_jokes
-# puts "Please enter your friends' username"
-# friends_username = gets.chomp
-# if friends_username = User.find_by(username: friends_username)
-#     return jokes that belong to that user
-# elseif friends_username == exit 
-# exit
-# else puts "Sorry, that username may not exist. Check your spelling and try again!"
-#     puts "" 
-#     puts ""
-#     puts "If you spell Chuck Norris wrong on Google it doesn't say, 'Did you mean Chuck Norris?' It simply replies, 'Run while you still have the chance.'"
+def settings(user)
+    puts ""
+    puts "What would you like to do?"
+        puts "(1) Change your username"
+        puts "(2) Return to the main menu"
+        puts "(3) Get the Chuck out of here!"
+        puts ""
+        # Press 1 to change your username, or press 2 to return to the main menu."
+        user_input = gets.chomp
+    if user_input == "3"
+        exit
+    elsif user_input == "exit"
+        exit
+    elsif user_input == "1"
+        User.change_your_username(user)
+    elsif user_input == "2"
+        main_menu(user)
+    else
+        puts "Invalid entry. Chuck is disgusted. Try again!"
+    end
+end
 
-    
 
